@@ -27,11 +27,10 @@ span, p, h1, h2, h3, figure, button{
     height: 40px;
     /*cambiamos el color del carrito a negro */
     stroke: #000;
-    
 }
 
 /* hacemos que cada vez que se pase el puntero por el carrito, el puntero cambie a una mano */
-.icon-cart:hover{
+.container-cart-icon:hover{
     cursor: pointer;
 }
 

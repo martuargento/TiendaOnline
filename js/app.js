@@ -1,5 +1,5 @@
 //tomamos la clase "icon-cart" y la ponemos dentro de una variable
-const btnCart = document.querySelector('.icon-cart') 
+const btnCart = document.querySelector('.container-cart-icon') 
 
 // aca hace lo mismo
 const containerCartProducts = document.querySelector('.container-cart-products')
