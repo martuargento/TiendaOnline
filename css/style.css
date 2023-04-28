@@ -1,0 +1,246 @@
+d/* "Esto es para reiniciar los estilos globales"  */
+*::after,  
+*::before,
+
+/* Estilos Globales */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 auto;
+    max-width: 1200px;
+    font-family: 'lato';
+    color: #333
+}
+
+/* Esto es para que cuando se pase el mouse por encima del texto o numero, no aparezca */
+/* el puntero como para poder editar */
+span, p, h1, h2, h3, figure, button{
+    user-select: none;
+}
+
+.icon-cart{
+    width: 40px;
+    height: 40px;
+    /*cambiamos el color del carrito a negro */
+    stroke: #000;
+    
+}
+
+/* hacemos que cada vez que se pase el puntero por el carrito, el puntero cambie a una mano */
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+/* hacemos que las imagenes no puedan superar el 100% del ancho de la pantalla */
+img{
+    max-width: 100%;
+}
+
+/* Header */
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+
+/* este es el contenedor de todo el carrito y lo que tenga dentro */
+.container-icon{
+    position: relative;
+}
+
+.count-products{
+    position: absolute;
+    top: 55%; 
+    right: 0; 
+    background-color: #000;
+    color: #fff; 
+    width: 25px;
+    height: 25px;
+    /* "uso display flex para poder alinearlo horizontalmente y verticalmente */
+    /* utilizando align-items y justify-center */
+    display: flex;
+    /* alineo verticalmente */
+    align-items: center;
+    /* alineo horizontalmente */
+    justify-content: center ;
+    /* y convierto el cuadrado en un circulo */
+    border-radius: 50%;
+    
+}
+
+#contador-productos{
+    font-size: 12px;    
+}
+
+.container-cart-products{
+position: absolute;
+top: 50px;
+background-color: #fff;
+width: 400px;
+/* el icono de la X, estaba muy grande cuando le di a este contenedor 400px */
+/* y habia que hacer scroll a la derecha, ya que se salia hacia ese lado */
+/* se soluciona con el siguiente comando */
+right: 0;
+/* aplicaremos z-index: 1 para que esto este siempre por encima de lo que este abajo */
+/* en este caso seran los productos */
+/* de lo contrario los productos podrian llegar a tapar este menu */
+z-index: 1;
+box-shadow: 0 10px 20px rgba(0,0,0,0.20 );
+border-radius: 10px;
+}
+
+
+/* Este div contiene dos elemenos- la informacion del producto y el icono de la X */
+/* usamos display: flex para que tanto la informacion del producto como la X aparezcan en linea  */
+.cart-product{
+    display:flex;
+    padding: 30px;
+    /* ponemos justify-content: space-between para que se separen y la X quede bien a la derecha */
+    justify-content: space-between;
+    /* ponemos una raya por debajo */
+    border-bottom: 1px solid rgba(0,0,0,0.20 );
+    align-items: center;
+}
+
+/* la informacino de los productos se ven uno abajo del otro, para ponerlos en linea usamos */
+/* display:flex */
+.info-cart-product{
+    display:flex;
+    justify-content: space-between;
+    /* la informacion aparece toda junta, pegada, porque esta ocupando el mismo espacio */
+    /* para poder decirle que ocupe mas espacio ponemos el siguiente comando */
+    flex: 0.8;
+}
+
+.titulo-producto-carrito{
+    font-size: 20px;
+}
+
+.precio-producto-carrito{
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.cantidad-producto-carrito{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+.icon-close{
+    width: 25px;
+    height: 25px;
+}
+
+/* hacemos que cuando el usuario pase el mouse por la X se ponga roja */
+.icon-close:hover{
+    stroke: red;
+    /* y hacemos que cambie el puntero del mouse, por la manito */
+    cursor: pointer;
+}
+
+.cart-total{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+/* Esto es para ocultar todo lo que hay en el carrito, la informacion de los productos */
+/* por defecto, va a estar oculta */
+.hidden-cart{
+    display:none;
+}
+
+/* Main */
+.container-items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.item{
+    border-radius: 10px;
+ }
+
+ .item:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.44);
+ }
+
+.item img{
+    width: 100%;
+    height: 300px;
+    /* las imagenes se veian estiradas, porque algunas eran mas largas que otras */
+    /* y al poner 300px de alto, quedaban mal, con el siguiente comando se arreglan: */
+    object-fit: cover; 
+    /* lo que hace el comando de arriba es adaptar la imagen, sin importar que */
+    /* se pierdan detalles y lo centra */
+    border-radius: 10px 10px 0 0;
+    /* en el comando de arriba le redondeamos el borde a la imagen */
+    /* arriba a la izquierda, y arriba a la derecha */
+    /* abajo quedaria cuadrado */
+    transition: all .5s;
+    /* el comando de arriba es para que al pasar el mouse sobre la imagen, el cambio */
+    /* de tamaño no lo haga bruzco, sino con una transicion lenta */
+}
+
+/* hacemos que cada vez que pasemos el mouse por algun producto  */
+/* la imagen se agrande */
+.item:hover img{
+    transform: scale(1.2);
+}
+/* pero al agrandarse la imagen tenemos el problema que se sobrepasa e invade la parte */
+/* en este caso, de donde esta la informacion, e incluso un poco a los productos */
+/* que se  encuentran alos costados */
+
+/* para solucionar eso, vamos al contenedor de la imagen */
+/* y ponemos el siguiente comando para indicar que lo que sobrepase al contenedor, se oculte */
+.item figure{
+    overflow: hidden;
+}
+/* de esta manera la imagen se agranda y lo que sobrepase a su contenedor padre, se oculta */
+
+.info-product{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price{
+    font-size: 18px;
+    font-weight: 900 ;
+}
+
+/* Este es el boton */
+.info-product button{
+    /* le quitamos el borde */
+    border:none;
+    /* hacemos que no tenga el tipico fondo gris de los botones */
+    background: none;
+    /* le ponemos un fondo negro */
+    background-color: #000;
+    /* hacemos que las letras sean blancas */
+    color: #fff;
+    padding: 15px 10px;
+    /* hacemos que al poner el mouse sobre el, cambie el cursor y se ponga una manito */
+    cursor: pointer; 
+    border-radius: 1%;
+}

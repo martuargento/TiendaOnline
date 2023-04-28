@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Titulo principal y carrito de compra -->
+        <h1>Tienda</h1>
+        
+        <div class="container-icon">
+
+            <!-- icono de carrito -->
+            <div class="container-cart-icon">
+          
+
+
+
+
+
+
+                
+                <div class="container-cart-products hidden-cart">
+                    <!-- informacion de producto que se añade al carrito -->
+                    <div class="cart-product">
+                        <div class="info-cart-product">
+                            <span class="cantidad-producto-carrito">1</span>
+                            <p class="titulo-producto-carrito">Zapatilla Nike</p>
+                            <span class="precio-producto-carrito">$80</span>
+                        </div>
+                        <!-- icono de X -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"     stroke-width="1.5" stroke="currentColor" class="icon-close">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18    6M6 6l12 12" />
+                        </svg>
+
+                    </div>
+                    
+             
+                    <!-- Total a pagar -->
+                    <div class="cart-total">
+                        <h3>Total:</h3>
+                        <span class="total-pagar">$200</span>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor de items -->
+    <div class="container-items">
+
+        <!-- Zapatillas -->
+        <div class="item">
+            <figure>
+                <img src="https://media.istockphoto.com/id/1337761782/es/foto/par-de-zapatos-deportivos-de-moda-de-color-negro-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=QEZHP5ysQr8cMAWMWmFLbT5-AU-_fVedG-unXs-GMwA=" alt="">
+            </figure>
+            
+            <div class="info-product">
+                <h2>Zapatillas</h2>
+                <p class="price">$80</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+
+        <!-- Auriculares -->
+        <div class="item">
+            <figure>
+                <img src="https://images.pexels.com/photos/205926/pexels-photo-205926.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+            </figure>
+           
+            <div class="info-product">
+                <h2>Auriculares</h2>
+                <p class="price">$20</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+
+        <!-- Relojes -->
+        <div class="item">
+            <figure>
+                <!-- <img src="https://media.istockphoto.com/id/1224750868/es/vectorilustraci%C3%B3n-vectorial-realista-del-reloj-de-mano-aislada-sobre-fono-blanco.jpg?s=612x612&w=0&k=20c=8JGdNVtLazqslyVEFc_SahkluETlNb9O9nbTCC7q6iA=" alt=""> -->
+                
+                <!-- <img src="data:image/png;base64,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" alt=""> -->
+                <img src="https://media.istockphoto.com/id/1180244659/es/foto/reloj-de-lujo-aislado-sobre-fondo-blanco-con-trazado-de-recorte-para-ilustraciones-o-dise%C3%B1o.jpg?b=1&s=612x612&w=0&k=20&c=7ED5lF1E8UT3YafRbMa95aRYTl3NDYGOBXrY3UuqnUc=" alt="">
+            </figure>
+            
+            <div class="info-product">
+                <h2>Relojes</h2>
+                <p class="price">$50</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+
+        <!-- Smartwatch -->
+        <div class="item">
+            <figure>
+                <!-- <img src="https://images.pexels.com/photos/2861929/pexels-photo-2861929jpeg?cs=srgb&dl=pexels-vishven-solanki-2861929.jpg&fm=jpg_gl=1*1i0jyxt*_ga*MzgyNzAwNDguMTY4MjY1MTYzMA.*_ga_8JE65Q40S6*MTY4MjY1MTYzNy4xLjEuMTY4MjY1NDQ4My4wLjAuMA.." alt=""> -->
+                <img src="https://images.pexels.com/photos/2861929/pexels-photo-2861929.jpeg?auto=compress&cs=tinysrgb&w=600">
+            </figure>
+            
+            <div class="info-product">
+                <h2>Smartwatch</h2>
+                <p class="price">$90</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+
+        <!-- Perfumes -->
+        <div class="item">
+            <figure>
+                <!-- <img src="https://p0.pxfuel.com/preview/52/620/29perfume-bottle-isolated-white.jpg" alt=""> -->
+                <img src="https://images.pexels.com/photos/11295238/pexels-photo-11295238.jpeg?auto=compress&cs=tinysrgb&w=600s://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9https://images.pexels.com/photos/11295238/pexels-photo-11295238.jpeg?auto=compress&cs=tinysrgb&w=600mjtFWRxi-sDMLJSCcQZo2pHGdvTk5lFGUkEjY5LczNhipabzzBlIYu8jNheso-jQXgA&usqphttps://images.pexels.com/photos/11295238/pexels-photo-11295238.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+            </figure>
+            </figure>
+        
+            <div class="info-product">
+                <h2>Perfumes</h2>
+                <p class="price">$50</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+        </div>
+       
+        
+           
+      
+    </div>
+<script src="js/app.js"></script>
+</body>
+</html>
