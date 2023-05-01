@@ -37,8 +37,11 @@ const productList = document.querySelector('.container-items')
 // variable de arreglos de productos
 let allProducts = []
 
+//tomamos la clase total-pagar
+const valorTotal = document.querySelector('.total-pagar')
 
-
+//tomamos el id #contador-productos
+const countProducts = document.querySelector('#contador-productos')
 
 
 
@@ -53,6 +56,13 @@ productList.addEventListener('click', e => {
 
     if (e.target.classList.contains('btn-add-cart')){
          
+        /*aca lo que haremos es cuando apreta el boton, junta todos los datos del producto,
+        los mete en allProducts, se fija si se repite para contar cuanta cantidad
+        de cada producto se ha seleccionado, el resultado sera que en allProducts
+        va a estar correcta toda la informacion de que productos y en que cantidad
+        de cada uno se ha elegido
+        */
+
         //console.log(e.target.parentElement)
         //e.target.parentElement retrocede al padre del elemento que le hicimos click
         //y me trae todo ese elemento completo
@@ -96,19 +106,63 @@ productList.addEventListener('click', e => {
 
         //podemos comprobar esto haciendo: console.log(exists) e ir tocando los botones
         //y fijandose en consola si se repiten
-
         
-        allProducts = [...allProducts, infoProduct]
-        //con el operador "..." spread, lo que hace es hacer un nuevo arreglo, esparce cada elemento
-        //que tenia en la copia original, quedando igual al arreglo original, y al final
-        //le mete el nuevo elemento, que en este caso sera el arreglo infoProduct
-        //luego actualiza el valor del arreglo original allProducts, con el valor que quedo como
-        //resultado en el nuevo arreglo 
-        //es una manera de combinar dos arreglos (allProducts y infoProduct) sin mutar 
-        //lo que ya teniamos en el arreglo original (allproducts
+        //con .some nos fijamos si es que el nuevo producto existe en el carrito
+        //ahora abajao vamos a ir sumando las cantidades de veces que existe
+        //======================actualiza cantidad del mismo producto======================       
+        if (exists){
+            const products = allProducts.map(producto => {
 
-        console.log(allProducts)
+            if(producto.titulo === infoProduct.titulo){
+                producto.cantidad++;
+                return producto;
+            }
+            else{
+                return producto
+            }
+            //lo que hace es ir comparando cada producto de allProducts con el nuevo producto
+            //si tienen el mismo titulo, aumenta en uno la cantidad de la variable producto
+            //de la funcion, y devuelve el producto, actualizando el valor que tenia en 
+            //allProducts
+
+            //si no tienen el mismo titulo igualmente lo devuelve, pero sin aumentar la cantidad
+            //lo deja tal cual estaba
+         }    
+         )
+         
+        allProducts = [...products]
+        //ahora que ya tenemos en product el resultado final de como deberia quedar allProducts
+        //lo que hacemos es reemplazar el valor de allProducts por el de product
+
+        //de esta manera ahora tenemos en allProducts el resultado final con la cantidad actualizada
+        }
+        //=================== fin actualiza cantidad del mismo producto======================
+
+        //================agrega el nuevo producto que no existia en la lista================
+        else{
+            //y si exists es falso, lo que quiere decir que el producto no existe en la lista
+            //del carrito, lo que hacemos es agregar este producto a la lista. (no actualizamos
+            //la cantidad de un producto que ya teniamos en la lista, sino que agregamos a la lista,
+            //el nuevo producto)
+
+            allProducts = [...allProducts, infoProduct]
+            //con el operador "..." spread, lo que hace es hacer un nuevo arreglo, esparce cada elemento
+            //que tenia en la copia original, quedando igual al arreglo original, y al final
+            //le mete el nuevo elemento, que en este caso sera el arreglo infoProduct
+            //luego actualiza el valor del arreglo original allProducts, con el valor que quedo como
+            //resultado en el nuevo arreglo 
+            //es una manera de combinar dos arreglos (allProducts y infoProduct) sin mutar 
+            //lo que ya teniamos en el arreglo original (allproducts)
+            
+    
+            console.log(allProducts)
+
+        } 
+          //============ fin agrega el nuevo producto que no existia en la lista ============
+        
         showHTML();
+        //aca cuenta cuantos productos se ha seleccionado, cuanto es el dinero final,
+        //inserta en el html, en el menu, los productos seleccionados
     }
 })
 
@@ -118,6 +172,13 @@ const showHTML = () =>{
     // Limpiar HTML de lo que tenia antes en la lista de productos seleccionados:
     rowProduct.innerHTML = " ";
 
+    let totalaPagar = 0;
+    let contadorDeProductosEnCarrito = 0; 
+
+    //=====================================================================================
+    //        ACA ARRANCA EL PROCESO DE METER EN EL MENU LOS PRODUCTOS SELECCIONADOS
+    //=====================================================================================
+    
     allProducts.forEach(producto =>{ //el forEach recorre todo el arreglo, 
         //y por cada uno de los campos... ejecuta la funcion que hay adentro,
         //producto va a ser donde se va a guardar cada campo del arreglo,
@@ -173,8 +234,38 @@ const showHTML = () =>{
                 </div>
             </div> 
     */
+    //======estamos dentro del forEach, recorriendo de a una vez el arreglo allProducts======
+    //== allProducts tiene la cantidad definitiva de productos seleccionados por el usuario ==
+    //================ y en que cantidades, por lo cual en cada iteracion  ==================
+    //======== vamos sumando por cada producto el valor por la cantidad, =========
+    //============== en variables que iran acumulando la de todos los productos ==============
+    totalaPagar = totalaPagar + parseInt(producto.cantidad * producto.precio.slice(1)) //minuto 34 detallar que hace esto
+    contadorDeProductosEnCarrito = contadorDeProductosEnCarrito + producto.cantidad    //minuto 34 detallar que hace esto
+
+    }
+    )
+    //=====================================================================================
+    //        TERMINA EL PROCESO DE METER EN EL MENU LOS PRODUCTOS SELECCIONADOS
+    //=====================================================================================
+
+
+
     
-    }) 
+    //=====================================================================================
+    //          INICIA PONER EL TOTAL FINAL $, Y LA CANTIDAD DE PRODUCTOS SELECCIONADOS
+    //=====================================================================================
+
+    valorTotal.innerText = `$ ${totalaPagar}` 
+    //habiamos tomado la clase del div donde se muestra el total y lo metimos en la variable
+    //valorTotal. ahora insertamos en el, totalaPagar, con una plantilla en donde indicamos
+    //que primero ponga el simbolo $ , y luego el valor que tenga totalaPagar
+    
+    countProducts.innerText = contadorDeProductosEnCarrito //minuto 33 detallar que hace esto
+
+    //=====================================================================================
+    //         FIN PONER EL TOTAL FINAL $, Y LA CANTIDAD DE PRODUCTOS SELECCIONADOS
+    //=====================================================================================
+
 } 
 
 
