@@ -5,7 +5,7 @@ const btnCart = document.querySelector('.container-cart-icon')
 const containerCartProducts = document.querySelector('.container-cart-products')
 
 // aca hago lo mismo pero con la clase del icono de la X
-const cerrarX = document.querySelector('.icon-close')
+//const cerrarX = document.querySelector('.icon-close')
  
 //cada vez que yo haga click en el carrito, se ejecutara una funcion
 // en la cual, le indicamos que ponga o quite (toggle), la clase "hidder-cart"
@@ -18,11 +18,11 @@ btnCart.addEventListener('click', () => {
 })
 
 //la idea de esto es que vuelva a agregar la clase hidder-cart, para que se vuelva a ocultar
-cerrarX.addEventListener('click', () => {
+//cerrarX.addEventListener('click', () => {
     //alert(containerCartProducts.classList) //para ver que clases tiene antes de agregar
-    containerCartProducts.classList.add('hidden-cart')
+   //containerCartProducts.classList.add('hidden-cart')
     //alert(containerCartProducts.classList) //para ver que clases tiene despues de agregar
-})
+//})
 
 
 // ==============================segundo video================================
@@ -158,8 +158,42 @@ productList.addEventListener('click', e => {
             console.log(allProducts)
 
         } 
-          //============ fin agrega el nuevo producto que no existia en la lista ============
+        //============= fin agrega el nuevo producto que no existia en la lista =============
         
+        //=== al apretar X en un producto, eliminarlo de la lista y que se descuente del total ====
+        rowProduct.addEventListener('click', (e) =>{ //cuando se hace click en la lista del carrito
+
+            if (e.target.classList.contains('icon-close')){ //si donde hacemos click tiene la clase icon-clase (la X la tiene)
+                const product = e.target.parentElement //guardamos en nueva variable, el elemento padre del icon-clase. que seria la clase cart-product
+                const title = product.querySelector('p').textContent //guardamos en nueva variable el contenido del elemento p, de clase cart-product, en este caso corresponde al titulo del producto
+
+                allProducts = allProducts.filter( productfilter => productfilter.titulo !== title)
+                //el .filter lo que hace es hacer un nuevo arreglo con los productos que pasen el filtro
+                //en este caso, como title tendra el producto que el usuario apreto la X
+                //decimos que haga un nuevo arreglo con los productos que sean diferents del titulo 
+                //de ese producto
+                //de esta manera en allProducts, solo quedaran los productos que el usuario no haya apretado la X
+                //logrando de esta manera eliminar los productos que el usuario si haya apretado la X
+                //al mismo tiempo, al eliminarse los productos, se descontaran automaticamente 
+                //tanto el contador de productos, como el valor total, ya que esos calculos se hacen
+                //mas abajo en base a los productos que hay en arreglo allProducts
+                //por lo cual si hay mas productos se iran sumando, y si le quitamos productos a este arreglo
+                //se iran descontando
+
+            
+                       
+            showHTML(); 
+            //y aca llamamos nuevamente la funcion showHTML(), que limpia y escribe la lista
+            //que tiene el arreglo allProducts.
+            //si no lo hacemos, el cambio se produce en el arreglo allProducts, pero no se ve
+            //ningun tipo de cambio en la pantalla, los productos siguen apareciendo
+            //y no se descuenta el valor total de la compra en la pantalla
+
+            }
+
+        })
+        //=== fin al apretar X en un producto, eliminarlo de la lista y que se descuente del total====
+
         showHTML();
         //aca cuenta cuantos productos se ha seleccionado, cuanto es el dinero final,
         //inserta en el html, en el menu, los productos seleccionados
