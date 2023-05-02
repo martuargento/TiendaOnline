@@ -243,3 +243,8 @@ border-radius: 10px;
     cursor: pointer; 
     border-radius: 1%;
 }
+
+.cart-empty{
+    padding: 20px;
+    text-align: center;
+}

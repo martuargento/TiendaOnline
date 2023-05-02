@@ -4,6 +4,8 @@ const btnCart = document.querySelector('.container-cart-icon')
 // aca hace lo mismo
 const containerCartProducts = document.querySelector('.container-cart-products')
 
+const divtotal = document.querySelector('.cart-total')
+
 // aca hago lo mismo pero con la clase del icono de la X
 //const cerrarX = document.querySelector('.icon-close')
  
@@ -203,8 +205,36 @@ productList.addEventListener('click', e => {
 // Funcion para mostrar HTML
 
 const showHTML = () =>{
+
+  
     // Limpiar HTML de lo que tenia antes en la lista de productos seleccionados:
     rowProduct.innerHTML = " ";
+
+      //------------------------ nos fijamos si el carrito esta vacio ------------------------
+      if (!allProducts.length){ //.lenght devuelve la cantidad de elementos que tiene el arreglo, por la forma en que preguntamos, devolvera un booleano, si tiene algo el arreglo adentro devolvera verdadero, y sino falso. entonces le estamos pregunta..si es diferente de verdadero, se cumplira cuando no tenga nada 
+        rowProduct.innerHTML= `
+        <p class="cart-empty">El carrito esta vacio </p>
+        `
+
+        divtotal.classList.add('hidden-cart')
+       
+        
+    //con el innerHTML, lo que hacemos es borrar todo lo que tenia la clase container-cart-products
+    //que la habiamos tomado y colocado en la variable containerCartProducts
+    //e insertar lo que le pusimos en la plantilla (el carrito esta vacio)
+    //a eso que le insertamos le pusimos una clase llamada cart-empty que vamos a darle estilo
+    //en css llamandola
+
+    
+    }
+    else
+    {
+        divtotal.classList.remove('hidden-cart')
+    }
+
+    console.log(allProducts.length)
+    console.log(allProducts)
+    //------------------------ fin de ver si el carrito esta vacio ------------------------
 
     let totalaPagar = 0;
     let contadorDeProductosEnCarrito = 0; 
@@ -256,7 +286,7 @@ const showHTML = () =>{
     */
     
 
-    
+    console.log(containerProduct)
     rowProduct.append(containerProduct)
     //aca insertamos el codigo que hicimos en el <div clase="row-product">
     //del documento html
