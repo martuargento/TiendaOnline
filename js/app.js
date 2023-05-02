@@ -210,7 +210,29 @@ const showHTML = () =>{
     // Limpiar HTML de lo que tenia antes en la lista de productos seleccionados:
     rowProduct.innerHTML = " ";
 
-      //------------------------ nos fijamos si el carrito esta vacio ------------------------
+        /* ******* Codigo original del video que yo cambie porque tenia un problema *******
+        
+        //------------------------ nos fijamos si el carrito esta vacio ------------------------
+          if (!allProducts.length){ //.lenght devuelve la cantidad de elementos que tiene el arreglo, por la forma en que preguntamos, devolvera un booleano, si tiene algo el arreglo adentro devolvera verdadero, y sino falso. entonces le estamos pregunta..si es diferente de verdadero, se cumplira cuando no tenga nada 
+            containerCartProducts.innerHTML= `
+            <p class="cart-empty">El carrito esta vacio </p>
+            `      
+            
+        //con el innerHTML, lo que hacemos es borrar todo lo que tenia la clase container-cart-products
+        //que la habiamos tomado y colocado en la variable containerCartProducts
+        //e insertar lo que le pusimos en la plantilla (el carrito esta vacio)
+        //a eso que le insertamos le pusimos una clase llamada cart-empty que vamos a darle estilo
+        //en css llamandola
+    
+         //------------------------ fin de ver si el carrito esta vacio ------------------------
+
+           ******  fin Codigo original del video que yo cambie porque tenia un problema ******     */
+        
+         //lo cambie por lo que viene abajo:
+         
+     
+     
+    //------------------------ nos fijamos si el carrito esta vacio ------------------------
       if (!allProducts.length){ //.lenght devuelve la cantidad de elementos que tiene el arreglo, por la forma en que preguntamos, devolvera un booleano, si tiene algo el arreglo adentro devolvera verdadero, y sino falso. entonces le estamos pregunta..si es diferente de verdadero, se cumplira cuando no tenga nada 
         rowProduct.innerHTML= `
         <p class="cart-empty">El carrito esta vacio </p>
@@ -219,19 +241,47 @@ const showHTML = () =>{
         divtotal.classList.add('hidden-cart')
        
         
-    //con el innerHTML, lo que hacemos es borrar todo lo que tenia la clase container-cart-products
-    //que la habiamos tomado y colocado en la variable containerCartProducts
+    //con el innerHTML, lo que hacemos es borrar todo lo que tenia la clase row-product
+    //que la habiamos tomado y colocado en la variable rowProduct
     //e insertar lo que le pusimos en la plantilla (el carrito esta vacio)
     //a eso que le insertamos le pusimos una clase llamada cart-empty que vamos a darle estilo
     //en css llamandola
+
+    //tambien le agrego a la clase cart-total que esta metida en la variable divtotal
+    //la case hiiden-cart que oculta a todo elemento que la tenga
+    //esto es porque cuando el carrito quede vacio, quiero que se oculte el total
+    //y solo quede "el carrito esta vacio"
 
     
     }
     else
     {
         divtotal.classList.remove('hidden-cart')
+        //en caso de que el arreglo allProducts tenga productos, quitamos la clase hidden-cart
+        //de divtotal, que recordemos tiene la clase cart-total, lo que hara que se vuelva
+        //a mostrar el total si es que hay elementos.
     }
 
+    //otra cosa que modifique del video original es que en el video, en el html
+    //hay un producto cargado directamente como ejemplo y se muestra de entrada antes de
+    //que el usuario elija algun producto, uno entraba al carrito y ya habia un producto.
+    //en su lugar inserte por fuera del div que contiene el producto de ejemplo, un parrafo
+    // que dice "el carrito esta vacio", y lo que hice fue ocultar el div que contiene
+    // el producto de ejemplo agregandole la clase hidden-cart, solo lo oculte,
+    // porque el div tiene una estructura con clases que sirven para el funcionamiento 
+    // del carrito, y si es eliminado no funciona el menu del carrito.
+
+    //tambien oculte directamente la clase cart-total que contiene el total
+    //ya que sino aparecia directamente, y lo unico que quiero que se vea es el 
+    //"el carrito esta vacio"
+
+    //asi que basicamente oculte el producto que viene de ejemplo, y el total
+    //para poner el mensaje "el carrito esta vacio"
+    //tanto la estructura de los productos, como el total vuelven a aparecer 
+    //segun haya o no productos, agregando o quitando la clase hidden-cart
+    //lo importante es que de comienzo aparezcan ocultos
+
+    //
     console.log(allProducts.length)
     console.log(allProducts)
     //------------------------ fin de ver si el carrito esta vacio ------------------------
