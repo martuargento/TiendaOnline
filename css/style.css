@@ -326,6 +326,7 @@ border-radius: 10px;
 
     .icon-close{
         margin-left: 20px;
+        scale: 1.7;
     }
 
 }
