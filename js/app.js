@@ -405,6 +405,10 @@ const showHTML = () =>{
     if (value < 0 ){
         return (barraDeProgreso.style.width = "0%")
     }
+
+    if(value > 95){
+        return (barraDeProgreso.style.width = "100%")
+    }
     
     }
     
