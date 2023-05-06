@@ -407,12 +407,20 @@ const showHTML = () =>{
     }
 
     if(value > 95){
-        return (barraDeProgreso.style.width = "100%")
+        return (barraDeProgreso.style.width = "120%")
     }
     
     }
     
-    window.addEventListener('scroll', barraDeProgresoAnimada)
+ 
+ 
+    window.addEventListener('scroll', () =>{
+        if(window.innerWidth < 480){
+                barraDeProgresoAnimada();
+            }
+        } )
+      
+    
     
 //=====================================================================================
 //                        FIN BARRA DE PROGRESO

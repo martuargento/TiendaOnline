@@ -338,6 +338,6 @@ border-radius: 10px;
     left: 0;
     width: 0%;
     height: 8px;
-    background: linear-gradient(to right, #ffffff25, #d626266e);
+    background: linear-gradient(to right, #ffffff25, #000000ce);
     transition: width .3s ease-out;
 }
